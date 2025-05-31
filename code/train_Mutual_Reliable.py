@@ -47,13 +47,13 @@ parser.add_argument('--lamda', type=float, default=0.5, help='weight to balance 
 
 args = parser.parse_args()
 
-snapshot_path = "/mnt/imtStu/jwsu/UncertaintyPixel_Rebuttal/{}_{}_{}_labeled/{}".format(args.dataset_name, args.exp,
+snapshot_path = "/home/una/PRML-repro/snapshot/{}_{}_{}_labeled/{}".format(args.dataset_name, args.exp,
                                                                                    args.labelnum, args.model)
 
 num_classes = 2
 if args.dataset_name == "LA":
     patch_size = (112, 112, 80)
-    args.root_path = args.root_path + 'data/LA'
+    args.root_path = args.root_path + 'data/LA-Segmentation'
     args.max_samples = 80
 elif args.dataset_name == "Pancreas_CT":
     patch_size = (96, 96, 96)

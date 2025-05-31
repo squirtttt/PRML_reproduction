@@ -7,7 +7,7 @@ from utils.test_patch import test_all_case
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset_name', type=str, default='LA', help='dataset_name')
-parser.add_argument('--root_path', type=str, default='/home/jwsu/semi/', help='Name of Experiment')
+parser.add_argument('--root_path', type=str, default='/home/una/PRML-repro/', help='Name of Experiment')
 parser.add_argument('--exp', type=str, default='MCNet', help='exp_name')
 parser.add_argument('--model', type=str, default='mcnet3d_v1', help='model_name')
 parser.add_argument('--gpu', type=str, default='0', help='GPU to use')
@@ -27,19 +27,19 @@ os.environ['CUDA_VISIBLE_DEVICES'] = FLAGS.gpu
 # test_save_path = "/mnt/imtStu/jwsu/WeightSample/{}_{}_{}_labeled_all/{}_predictions/".format(
 #     FLAGS.dataset_name, FLAGS.exp, FLAGS.labelnum, FLAGS.model)
 
-snapshot_path = "/mnt/imtStu/jwsu/UncertaintyPixel_Rebuttal/{}_{}_{}_labeled/{}".format(
+snapshot_path = "/home/una/PRML-repro/snapshot/{}_{}_{}_labeled/{}".format(
     FLAGS.dataset_name, FLAGS.exp, FLAGS.labelnum, FLAGS.model)
-test_save_path = "/mnt/imtStu/jwsu/UncertaintyPixel_Rebuttal/{}_{}_{}_labeled/{}_predictions/".format(
+test_save_path = "/home/una/PRML-repro/snapshot/{}_{}_{}_labeled/{}_predictions/".format(
     FLAGS.dataset_name, FLAGS.exp, FLAGS.labelnum, FLAGS.model)
 
 num_classes = 2
 if FLAGS.dataset_name == "LA":
     patch_size = (112, 112, 80)
-    FLAGS.root_path = FLAGS.root_path + 'data/LA'
+    FLAGS.root_path = FLAGS.root_path + 'data/LA-Segmentation'
     with open(FLAGS.root_path + '/test.list', 'r') as f:
         image_list = f.readlines()
     image_list = [
-        FLAGS.root_path + "/2018LA_Seg_Training Set/" + item.replace('\n', '') + "/mri_norm2.h5" for item in image_list
+        FLAGS.root_path + "/Training Set/" + item.replace('\n', '') + "/mri_norm2.h5" for item in image_list
     ]
 
 elif FLAGS.dataset_name == "Pancreas_CT":
