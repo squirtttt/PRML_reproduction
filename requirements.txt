@@ -1,0 +1,12 @@
+tqdm
+logging
+shutil
+numpy
+argparse
+tensorboardX
+glob
+h5py
+simpleitk
+medpy
+nibabel
+skimage
