@@ -18,10 +18,10 @@ def getLargestCC(segmentation):
 
 def var_all_case(model, num_classes, patch_size=(112, 112, 80), stride_xy=18, stride_z=4, dataset_name="LA"):
     if dataset_name == "LA":
-        with open('/home/jwsu/semi/data/LA/test.list', 'r') as f:
+        with open('/home/una/PRML-repro/data/LA-segmentation/test.list', 'r') as f:
             image_list = f.readlines()
         image_list = [
-            "/home/jwsu/semi/data/LA/2018LA_Seg_Training Set/" + item.replace('\n', '') + "/mri_norm2.h5"
+            "/home/una/PRML-repro/data/LA-segmentation/Training Set/" + item.replace('\n', '') + "/mri_norm2.h5"
             for item in image_list
         ]
     elif dataset_name == "Pancreas_CT":
@@ -203,7 +203,7 @@ def test_single_case_first_output(model, image, stride_xy, stride_z, patch_size,
                   = cnt[xs:xs+patch_size[0], ys:ys+patch_size[1], zs:zs+patch_size[2]] + 1
 
     score_map = score_map / np.expand_dims(cnt, axis=0)
-    label_map = (score_map[0] > 0.5).astype(np.int)
+    label_map = (score_map[0] > 0.5).astype(np.int32)
     if add_pad:
         label_map = label_map[wl_pad:wl_pad + w, hl_pad:hl_pad + h, dl_pad:dl_pad + d]
         score_map = score_map[:, wl_pad:wl_pad + w, hl_pad:hl_pad + h, dl_pad:dl_pad + d]
@@ -272,7 +272,7 @@ def test_single_case_average_output(net, image, stride_xy, stride_z, patch_size,
                   = cnt[xs:xs+patch_size[0], ys:ys+patch_size[1], zs:zs+patch_size[2]] + 1
 
     score_map = score_map / np.expand_dims(cnt, axis=0)
-    label_map = (score_map[0] > 0.5).astype(np.int)
+    label_map = (score_map[0] > 0.5).astype(np.int32)
     if add_pad:
         label_map = label_map[wl_pad:wl_pad + w, hl_pad:hl_pad + h, dl_pad:dl_pad + d]
         score_map = score_map[:, wl_pad:wl_pad + w, hl_pad:hl_pad + h, dl_pad:dl_pad + d]

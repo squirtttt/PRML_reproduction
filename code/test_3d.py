@@ -35,7 +35,7 @@ test_save_path = "/home/una/PRML-repro/snapshot/{}_{}_{}_labeled/{}_predictions/
 num_classes = 2
 if FLAGS.dataset_name == "LA":
     patch_size = (112, 112, 80)
-    FLAGS.root_path = FLAGS.root_path + 'data/LA-Segmentation'
+    FLAGS.root_path = FLAGS.root_path + 'data/LA-segmentation'
     with open(FLAGS.root_path + '/test.list', 'r') as f:
         image_list = f.readlines()
     image_list = [

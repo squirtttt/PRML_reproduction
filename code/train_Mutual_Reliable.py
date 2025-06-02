@@ -28,7 +28,7 @@ def get_current_consistency_weight(epoch):
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dataset_name', type=str, default='LA', help='dataset_name')
-parser.add_argument('--root_path', type=str, default='/home/jwsu/semi/', help='Name of Dataset')
+parser.add_argument('--root_path', type=str, default='/home/una/PRML-repro/', help='Name of Dataset')
 parser.add_argument('--exp', type=str, default='MCNet', help='exp_name')
 parser.add_argument('--model', type=str, default='mcnet3d_v1', help='model_name')
 parser.add_argument('--max_iteration', type=int, default=15000, help='maximum iteration to train')
@@ -47,13 +47,14 @@ parser.add_argument('--lamda', type=float, default=0.5, help='weight to balance 
 
 args = parser.parse_args()
 
+
 snapshot_path = "/home/una/PRML-repro/snapshot/{}_{}_{}_labeled/{}".format(args.dataset_name, args.exp,
                                                                                    args.labelnum, args.model)
 
 num_classes = 2
 if args.dataset_name == "LA":
     patch_size = (112, 112, 80)
-    args.root_path = args.root_path + 'data/LA-Segmentation'
+    args.root_path = args.root_path + 'data/LA-segmentation'
     args.max_samples = 80
 elif args.dataset_name == "Pancreas_CT":
     patch_size = (96, 96, 96)
